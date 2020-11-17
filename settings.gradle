@@ -1,0 +1,3 @@
+include ':JDFormValidator'
+include ':app'
+rootProject.name = "JD Validator App"
