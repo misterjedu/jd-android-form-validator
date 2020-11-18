@@ -13,6 +13,10 @@ fun EditText.jdValidatePassword(password: String): Boolean {
     return password.length >= 6
 }
 
+fun EditText.jdValidateConfirmPassword(password: EditText, confirmPassword: String): Boolean {
+    return password.text.toString().trim() == confirmPassword
+}
+
 /** Validating phone number field */
 fun EditText.jdValidatePhoneNumber(number: String): Boolean {
     val pattern: Pattern = Pattern.compile("[789][01][0-9]{8}")

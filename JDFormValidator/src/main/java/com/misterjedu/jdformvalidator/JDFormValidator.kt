@@ -106,7 +106,6 @@ class JDFormValidator(builder: Builder) {
 
             //If fields are validated and if there's a TIL or not, show error message
             if (field.validator.invoke(field.editText)) {
-
                 //Remove error icons if field is validated
                 if (field.editTextInputLayout != null) { //If there's a TextInputLayout
                     //Set Custom icon if it was set and validation passes
@@ -127,7 +126,14 @@ class JDFormValidator(builder: Builder) {
 
             } else if (!field.validator.invoke(field.editText)) { //If validation fails, set Icon and Error Messages
                 // Add Error Icons and Text if Edit Text fields are not empty
-                if (field.editTextInputLayout != null) {
+
+                if (field.editText.text.toString().trim().isEmpty()) {
+                    if (field.editTextInputLayout != null) {
+                        field.editTextInputLayout.error = null
+                    } else {
+                        field.editText.error = null
+                    }
+                } else if (field.editTextInputLayout != null) {
 
                     //Remove Error Icon
                     if (shouldRemoveErrorIcon) {
