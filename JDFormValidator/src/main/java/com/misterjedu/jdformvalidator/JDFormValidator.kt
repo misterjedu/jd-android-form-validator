@@ -90,6 +90,7 @@ class JDFormValidator(builder: Builder) {
     private fun validateWithoutWatching() {
         //Validate all fields and return an array of the validation status of each field
         val editTextValidationArray = fieldsValidationLogic()
+
         areAllFieldsValidated = !editTextValidationArray.contains(false)
     }
 
@@ -106,38 +107,27 @@ class JDFormValidator(builder: Builder) {
             //If fields are validated and if there's a TIL or not, show error message
             if (field.validator.invoke(field.editText)) {
 
-                //Remove all Errors when field is empty
-                if (field.editText.text.toString().trim().isEmpty()) {
-                    field.editTextInputLayout?.endIconMode = TextInputLayout.END_ICON_CUSTOM
-                    field.editTextInputLayout?.endIconDrawable = null
-                    field.editTextInputLayout?.error = null
-                    field.editText.error = null
-                } else
-
                 //Remove error icons if field is validated
-                    if (field.editTextInputLayout != null) { //If there's a TextInputLayout
-                        //Set Custom icon if it was set and validation passes
-                        if (validatedIcon != null) {
-                            field.editTextInputLayout.endIconMode = TextInputLayout.END_ICON_CUSTOM
-                            field.editTextInputLayout.setEndIconDrawable(validatedIcon!!)
-                        }
-
-                        field.editTextInputLayout.error = null
-
-                    } else { //If there's no TIL, use the editText
-                        field.editText.error = null
+                if (field.editTextInputLayout != null) { //If there's a TextInputLayout
+                    //Set Custom icon if it was set and validation passes
+                    if (validatedIcon != null) {
+                        field.editTextInputLayout.endIconMode = TextInputLayout.END_ICON_CUSTOM
+                        field.editTextInputLayout.setEndIconDrawable(validatedIcon!!)
                     }
+
+                    field.editTextInputLayout.error = null
+
+                } else { //If there's no TIL, use the editText
+                    field.editText.error = null
+                }
 
                 //Add true to the validation array
                 editTextValidationArray.add(true)
 
 
             } else if (!field.validator.invoke(field.editText)) { //If validation fails, set Icon and Error Messages
-
                 // Add Error Icons and Text if Edit Text fields are not empty
-                if (field.editTextInputLayout != null &&
-                        field.editText.text.toString().trim().isNotEmpty()
-                ) {
+                if (field.editTextInputLayout != null) {
 
                     //Remove Error Icon
                     if (shouldRemoveErrorIcon) {
@@ -152,9 +142,7 @@ class JDFormValidator(builder: Builder) {
 
                     field.editTextInputLayout.error = field.errorMessage
 
-                } else if (field.editTextInputLayout == null &&
-                        field.editText.text.toString().trim().isNotEmpty()
-                ) {
+                } else {
                     //Set Error on EditText if TextInputLayer is not available
                     field.editText.error = field.errorMessage
                 }
