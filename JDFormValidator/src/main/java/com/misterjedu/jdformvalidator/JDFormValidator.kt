@@ -1,4 +1,5 @@
 package com.misterjedu.jdformvalidator
+
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -12,7 +13,7 @@ class JDFormValidator(builder: Builder) {
     private var viewsToEnable: MutableList<View>
     private var shouldWatch: Boolean = false
     private var validatedIcon: Int? = null
-    private var areAllFieldsValidated: Boolean = false
+    var areAllFieldsValidated: Boolean = false
     private var shouldRemoveErrorIcon: Boolean = false
 
 
@@ -135,7 +136,7 @@ class JDFormValidator(builder: Builder) {
 
                 // Add Error Icons and Text if Edit Text fields are not empty
                 if (field.editTextInputLayout != null &&
-                    field.editText.text.toString().trim().isNotEmpty()
+                        field.editText.text.toString().trim().isNotEmpty()
                 ) {
 
                     //Remove Error Icon
@@ -152,7 +153,7 @@ class JDFormValidator(builder: Builder) {
                     field.editTextInputLayout.error = field.errorMessage
 
                 } else if (field.editTextInputLayout == null &&
-                    field.editText.text.toString().trim().isNotEmpty()
+                        field.editText.text.toString().trim().isNotEmpty()
                 ) {
                     //Set Error on EditText if TextInputLayer is not available
                     field.editText.error = field.errorMessage
@@ -179,8 +180,6 @@ class JDFormValidator(builder: Builder) {
         internal var validatedIcon: Int? = null
             private set
         internal var shouldRemoveErrorIcon: Boolean = false
-            private set
-        internal var setButton: Button? = null
             private set
 
         fun addFieldsToValidate(fields: MutableList<JDataClass>): Builder {
