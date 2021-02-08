@@ -6,7 +6,7 @@ Simple and Flexible form validator for android
 Validating input fields and forms in android is a a bit of an hassle, and most times, you'd have to write lots of codes every single time. I made a simple convenience class
 for myself to handle every single validation I will ever need (at least for now), and now I'm making it a library. It's very easy to use, yet very powerful.
 
-Once you set it up once, you'll find it easy and very convinient to use in most of your projects.
+Once you set it up once, you'll find it easy and very convinient to use in most of your projects. You can check out the sample project (link below) to see a real implementation. 
 
 # Usage
 
@@ -64,10 +64,10 @@ fun EditText.jdValidateEmail(email: String): Boolean {
 
 I already provided a few EditText validator functions in the "JDValidatorFunctions" class, and you can create yours very easily. 
 
-#Download
+# Download
 
 ```sh
-allprojects {
+	allprojects {
 		repositories {
 			...
 			maven { url 'https://jitpack.io' }
@@ -78,10 +78,15 @@ allprojects {
 # Gradle
 
 ```sh
-dependencies {
+	dependencies {
 	        implementation 'com.github.misterjedu:jd-android-form-validator:Tag'
 	}
   ```
+# Example Project
+
+Check out this sample project to see two different implementations of the form validator. 
+
+https://github.com/misterjedu/jd-android-form-validator-example
   
   # License
   
