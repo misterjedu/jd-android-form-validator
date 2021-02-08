@@ -33,6 +33,25 @@ All you need is to set the options in the Validator Builder class as shown below
             .build()
 ```
 
+Incase do not "watch while typing", you can know if all fields are validated on button click by calling the areAllFieldsValidated method.
+
+```sh
+ var validator =  JDFormValidator.Builder()
+             .addFieldsToValidate(fields)
+            .build()
+
+	
+	button.setOnClickListener{
+		if(validator.areFiledsValidated){
+			TODO( Do something)
+		}else{
+			TODO(Do nothing)
+		}
+	}
+```
+
+
+
 To set the fields to validate, all you need is to wrap each of the edit text, edit text input layout(optional), error message, and a validator lambda in a Jdatclass. 
 
 ```sh
